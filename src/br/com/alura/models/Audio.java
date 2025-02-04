@@ -2,8 +2,8 @@ package br.com.alura.models;
 
 import java.time.Duration;
 
-public class Audio {
-    private String title;
+public class Audio implements Classifiable {
+    private String name;
     private Enum genre;
     private int minutes;
     private int seconds;
@@ -12,8 +12,8 @@ public class Audio {
     private int likes = 100;
     private int classification;
 
-    public Audio(String title, Enum genre, int minutes, int seconds) {
-        this.title = title;
+    public Audio(String name, Enum genre, int minutes, int seconds) {
+        this.name = name;
         this.genre = genre;
         this.minutes = minutes;
         this.seconds = seconds;
@@ -28,6 +28,7 @@ public class Audio {
         return timesPlayed > 100;
     }
 
+    @Override
     public int Classification() {
         if (Classifiable()) {
             int ratio = (((likes * 100) / timesPlayed) / 20);
@@ -53,7 +54,7 @@ public class Audio {
         return classification;
     }
     public void Play () {
-        System.out.println("Playing " + title);
+        System.out.println("Playing " + name);
         timesPlayed++;
     }
 
@@ -63,9 +64,13 @@ public class Audio {
         return String.format("%02d:%02d", minutes, seconds);
     }
 
+    public int getTimesPlayed(){
+        return timesPlayed;
+    }
+
     @Override
     public String toString() {
-        return String.format("Audio: %s | Duration: %s", title, getFormattedDuration());
+        return String.format("Audio: %s | Duration: %s", name, getFormattedDuration());
     }
 
 

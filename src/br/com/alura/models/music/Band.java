@@ -1,22 +1,20 @@
-package br.com.alura.models;
+package br.com.alura.models.music;
 
 import br.com.alura.util.Genre;
 
 import java.util.ArrayList;
 
-public class Band implements Artist{
+public class Band extends Artist{
     private int numberOfMembers = 0;
-    private final ArrayList<Musician> musicians = new ArrayList<Musician>();
-    private final String name;
+    private final ArrayList<Musician> musicians;
     private final int established;
-    private final String nationality;
     private Genre mainGenre;
 
-    public Band(String name, int established, String nationality, Genre mainGenre) {
-        this.name = name;
-        this.established = established;
-        this.nationality = nationality;
+    public Band(String name, String nationality, Genre mainGenre, int established) {
+        super(name, nationality);
         this.mainGenre = mainGenre;
+        this.established = established;
+        this.musicians = new ArrayList<>();
     }
 
     public void addArtist(Musician musician) {
